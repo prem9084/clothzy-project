@@ -7,12 +7,12 @@ import { AppProvider } from "./Conetxt/CartContext.jsx";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./Conetxt/AuthContext.jsx";
 createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <AppProvider>
+  <AppProvider>
+    <AuthProvider>
       <BrowserRouter>
         <App />
         <ToastContainer />
       </BrowserRouter>
-    </AppProvider>
-  </AuthProvider>
+    </AuthProvider>
+  </AppProvider>
 );
