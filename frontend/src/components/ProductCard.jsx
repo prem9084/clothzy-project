@@ -1,11 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../Conetxt/CartContext";
 import { Heart, Package, ShoppingCart, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(AppContext);
   const [isLiked, setIsLiked] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  
 
   const localStorageKey = "likedProducts";
 
@@ -35,9 +36,9 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <div className="w-[240px] bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-        <div
+        <Link to={`/products-details/${product._id}`}
           className="relative w-full h-[180px] bg-gray-100 cursor-pointer flex items-center justify-center"
-          onClick={() => setShowModal(true)}
+          
         >
           <img
             src={product.image}
@@ -64,7 +65,7 @@ const ProductCard = ({ product }) => {
           <div className="absolute top-2 left-2 bg-purple-600 text-white px-2 py-0.5 rounded-full text-xs">
             {product.category.toUpperCase()}
           </div>
-        </div>
+        </Link>
 
         {/* Info Section */}
         <div className="p-4">
@@ -95,7 +96,7 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* Modal for full-size image */}
-      {showModal && (
+      {/* {showModal && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={() => setShowModal(false)}
@@ -118,7 +119,7 @@ const ProductCard = ({ product }) => {
             />
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };

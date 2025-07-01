@@ -30,7 +30,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  console.log(Cookies.get("token"));
+  
 
   const logout = async () => {
     try {

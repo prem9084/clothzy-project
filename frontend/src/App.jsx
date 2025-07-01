@@ -9,6 +9,7 @@ import UserProfile from "./components/ProfilePage";
 import MyProducts from "./components/MyProducts";
 import ProductUpdatePage from "./components/UpdateProduct";
 import Footer from "./components/Footer";
+import ProductViewPage from "./components/ProductViewPage";
 
 const App = () => {
  
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/profile" element={<UserProfile />} />
          <Route path="/my-products" element={<MyProducts />} />
          <Route path="/update-products/:id" element={<ProductUpdatePage />} />
+         <Route path="/products-details/:id" element={<ProductViewPage />} />
          
       
       </Routes>
