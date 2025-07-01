@@ -22,6 +22,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 
+
+const uploadsDir = path.join(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
 app.use("/api/v1/auth",authRoute)
 app.use("/api/v1/products", productRoute);
 
