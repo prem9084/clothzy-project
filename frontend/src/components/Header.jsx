@@ -168,7 +168,7 @@ const Header = () => {
                   onClick={()=>logout()}
                   className="p-2 text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  <LogOut className="w-5 h-5" />
+                  <LogOut className="w-5 h-5 cursor-pointer" />
                 </button>
               </div>
             ) : (

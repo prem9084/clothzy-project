@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 // middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', // or your frontend origin
+  origin: ['http://localhost:5173','https://clothzytech.netlify.app/'], // or your frontend origin
   credentials: true,               // 🔥 Allow credentials (cookies)
 }));
 app.use(cookieParser())
