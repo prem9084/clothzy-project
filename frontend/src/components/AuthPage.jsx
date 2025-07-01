@@ -4,10 +4,11 @@ import axiosInstance from "../axiosInstance/axiosInstance";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import useAuth from "../Conetxt/AuthContext";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { LoaderCircle } from "lucide-react";
 const AuthPage = () => {
   const { setCurrentPage } = useContext(AppContext);
-  const {setUser} = useAuth()
+  const { setUser } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -15,11 +16,13 @@ const AuthPage = () => {
     password: "",
   });
 
-  const navigate  = useNavigate()
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock authentication
+    setLoading(true);
     try {
       const { data } = await axiosInstance.post(
         isLogin ? "/auth/login" : "/auth/register",
@@ -29,18 +32,20 @@ const AuthPage = () => {
         toast.success(data.message);
         const { token, user } = data;
         setUser(user);
-        navigate("/")
+        navigate("/");
         Cookies.set("token", token, {
           expires: 7, // 7 days
           secure: true, // send only over HTTPS
           sameSite: "Strict", // or 'Lax' for cross-site
         });
-      }else{
+        setLoading(false);
+      } else {
         toast.error(data.message);
+        setLoading(false);
       }
     } catch (error) {
       console.log("Error during authentication:", error);
-      
+      setLoading(false);
     }
   };
 
@@ -106,8 +111,16 @@ const AuthPage = () => {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-semibold cursor-pointer"
+            disabled={loading}
+            className={`w-full py-3 rounded-lg text-white font-semibold transition-all cursor-pointer flex items-center justify-center gap-2
+    ${
+      loading
+        ? "bg-gradient-to-r from-purple-300 to-pink-300 hover:from-purple-300 hover:to-pink-300"
+        : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+    }
+  `}
           >
+            {loading && <LoaderCircle className="animate-spin h-5 w-5" />}
             {isLogin ? "Sign In" : "Create Account"}
           </button>
         </form>

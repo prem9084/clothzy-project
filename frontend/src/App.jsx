@@ -8,6 +8,7 @@ import CreateProduct from "./components/createProduct";
 import UserProfile from "./components/ProfilePage";
 import MyProducts from "./components/MyProducts";
 import ProductUpdatePage from "./components/UpdateProduct";
+import Footer from "./components/Footer";
 
 const App = () => {
  
@@ -25,6 +26,7 @@ const App = () => {
          
       
       </Routes>
+      <Footer />
     </>
   );
 };
