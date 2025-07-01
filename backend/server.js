@@ -6,6 +6,8 @@ import { connectDB } from './db/db.js';
 import authRoute from "./routes/auth.route.js"
 import productRoute from "./routes/produt.route.js"
 import cookieParser from 'cookie-parser';
+import path from "path"
+import fs from "fs"
 const app = express();
 const PORT = process.env.PORT || 3000;
 
