@@ -32,17 +32,17 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      const { data } = await axiosInstance.post("/auth/logout");
-      if (data.success) {
-        toast.success(data.message);
-        setUser(null);
-        setToken(null);
-        navigate("/auth")
-      }
+      // const { data } = await axiosInstance.post("/auth/logout");
+      // if (data.success) {
+      //   toast.success(data.message);
+      //   setUser(null);
+      //   setToken(null);
+      //   navigate("/auth")
+      // }
 
-      // Cookie.remove("token");
-      // window.location.href = "/";
-      // toast.success("User loggedOut");
+      Cookie.remove("token");
+      window.location.href = "/";
+      toast.success("User loggedOut");
     } catch (error) {
       toast.error("Error logging out");
     }
