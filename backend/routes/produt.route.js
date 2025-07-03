@@ -12,7 +12,7 @@ router.patch('/update-product/:id', isAuth, upload.single("image"), UpdateProduc
 router.get("/single-product/:id",isAuth, GetSingleProduct)
 router.get("/get-all", GetAllProducts)
 router.get("/get-my-products",isAuth, GetMyProducts)
-router.delete("/delete-product/:id",isAuth, DeleteProduct)
+router.delete("/delete-product/:id", DeleteProduct)
 router.post("/search",isAuth, searchProducts)
 
 export default router;
