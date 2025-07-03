@@ -73,16 +73,10 @@ export const loginUser = async (req, res) => {
       expiresIn: "1d",
     });
 
-    const options = {
-      secure: true, // Use true if your site is served over HTTPS
-      httpOnly: true,
-      sameSite: "None", 
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    };
+
 
     return res
       .status(200)
-      .cookie("token", token, options)
       .json({
         success: true,
         message: "User logged in successfully",

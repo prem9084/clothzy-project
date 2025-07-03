@@ -12,7 +12,7 @@ import {
 import { useContext, useState } from "react";
 import { AppContext } from "../Conetxt/CartContext";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import Cookie from "js-cookie";
 import useAuth from "../Conetxt/AuthContext";
 import axiosInstance from "../axiosInstance/axiosInstance";
 import { toast } from "react-toastify";
@@ -30,17 +30,19 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  
-
   const logout = async () => {
     try {
-      const { data } = await axiosInstance.post("/auth/logout");
-      if (data.success) {
-        toast.success(data.message);
-        setUser(null);
-        setToken(null);
-        navigate("/auth")
-      }
+      // const { data } = await axiosInstance.post("/auth/logout");
+      // if (data.success) {
+      //   toast.success(data.message);
+      //   setUser(null);
+      //   setToken(null);
+      //   navigate("/auth")
+      // }
+
+      Cookie.remove("token");
+      window.location.href = "/auth";
+      toast.success("User loggedOut");
     } catch (error) {
       toast.error("Error logging out");
     }
@@ -165,7 +167,7 @@ const Header = () => {
                 </div>
 
                 <button
-                  onClick={()=>logout()}
+                  onClick={() => logout()}
                   className="p-2 text-gray-600 hover:text-red-600 transition-colors"
                 >
                   <LogOut className="w-5 h-5 cursor-pointer" />
@@ -208,7 +210,8 @@ const Header = () => {
               </div>
 
               {/* Mobile Navigation */}
-              <Link to="/"
+              <Link
+                to="/"
                 onClick={() => {
                   setCurrentPage("home");
                   setIsMenuOpen(false);
@@ -217,8 +220,9 @@ const Header = () => {
               >
                 <Home className="w-5 h-5" />
                 <span>Home</span>
-              </ Link>
-              <Link to="/cart"
+              </Link>
+              <Link
+                to="/cart"
                 onClick={() => {
                   setCurrentPage("cart");
                   setIsMenuOpen(false);
