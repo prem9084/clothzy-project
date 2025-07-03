@@ -30,14 +30,10 @@ const AuthPage = () => {
       );
       if (data.success) {
         toast.success(data.message);
-        const { token, user } = data;
+        const { user } = data;
         setUser(user);
         navigate("/");
-        Cookies.set("token", token, {
-          expires: 7, // 7 days
-          secure: true, // send only over HTTPS
-          sameSite: "Strict", // or 'Lax' for cross-site
-        });
+       
         setLoading(false);
       } else {
         toast.error(data.message);
