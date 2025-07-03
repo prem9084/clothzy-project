@@ -41,7 +41,7 @@ const Header = () => {
       // }
 
       Cookie.remove("token");
-      window.location.href = "/auth";
+     navigate("/auth")
       toast.success("User loggedOut");
     } catch (error) {
       toast.error("Error logging out");
