@@ -116,12 +116,11 @@ export const getUserById = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
   try {
-    // Clear the token cookie
     res.clearCookie("token", {
-      path: "/", // Must match the path used when setting the cookie
-      httpOnly: true, // Only needed if you set it this way
-      secure: true, // Only if set over HTTPS
-      sameSite: "Strict", // Match the settings used when setting the cookie
+      path: "/", // Always include path if it was set
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
     });
 
     return res.status(200).json({
@@ -136,6 +135,7 @@ export const logoutUser = async (req, res) => {
     });
   }
 };
+
 
 // update profile
 
