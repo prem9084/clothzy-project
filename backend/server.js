@@ -19,7 +19,6 @@ app.use(cors({
 }));
 app.use(cookieParser())
 app.use(express.static('public'));
-app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 // routes

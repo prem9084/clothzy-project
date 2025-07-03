@@ -208,7 +208,7 @@ const Header = () => {
               </div>
 
               {/* Mobile Navigation */}
-              <button
+              <Link to="/"
                 onClick={() => {
                   setCurrentPage("home");
                   setIsMenuOpen(false);
@@ -217,8 +217,8 @@ const Header = () => {
               >
                 <Home className="w-5 h-5" />
                 <span>Home</span>
-              </button>
-              <button
+              </ Link>
+              <Link to="/cart"
                 onClick={() => {
                   setCurrentPage("cart");
                   setIsMenuOpen(false);
@@ -227,7 +227,7 @@ const Header = () => {
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>Cart ({getTotalItems()})</span>
-              </button>
+              </Link>
             </div>
           </div>
         )}
